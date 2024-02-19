@@ -71,7 +71,7 @@ pipeline {
                             url: "https://github.com/${GIT_REPOSITORY}"
                     }
                 }
-        stage('Update Kubernetes Configuration') {
+        stage('Update Kubernetes Configuration..') {
             steps {
                 script {
                     sh "ls -la"
