@@ -82,8 +82,11 @@ pipeline {
 
                         dir("overlays/${env.DIR_NAME}") {
                             sh "ls -la"
-                            sh "kustomize edit set image $REPO:$NEW_IMAGE_TAG"
                             sh "kustomize build . | kubectl apply -f - -n ${NAMESPACE}"
+                            sh "kustomize edit set image ${CONTAINER_REGISTRY}/${REPO}=${CONTAINER_REGISTRY}/${REPO}:${TAG}"
+                            sh "git add ."
+                            sh "git commit -m 'Update image to ${TAG}'"
+                            // sh "kustomize edit set image $REPO:$NEW_IMAGE_TAG"
                         }
                     }
                 }
