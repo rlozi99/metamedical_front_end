@@ -75,9 +75,7 @@ pipeline {
             steps {
                 script {
                     sh "ls -la"
-                    // Assuming the kubeconfig is set correctly on the Jenkins agent.
                     withKubeConfig([credentialsId: 'kubeconfig-credentials-id']) {
-                        // Change directory to the location of your kustomization.yaml
                         sh "ls -la"
 
                         dir("overlays/${env.DIR_NAME}") {
