@@ -17,9 +17,6 @@ pipeline {
         GIT_REPOSITORY = "rlozi99/metamedical_front_ops" 
 
         KUBECONFIG = '/home/azureuser/.kube/config'
-
-        // TAG_VERSION = "v1.0.Beta"
-        // TAG = "${TAG_VERSION}${env.BUILD_ID}"
     }
 
     stages{
@@ -33,7 +30,6 @@ pipeline {
         stage('Initialize..') {
             steps {
                 script {
-                    // Multibranch Pipeline에서 제공하는 BRANCH_NAME 환경 변수를 사용합니다.
                     def branch = env.BRANCH_NAME
                     echo "Checked out branch: ${branch}"
                     
@@ -50,7 +46,6 @@ pipeline {
                         env.TAG = 'unknown'
                         env.DIR_NAME = "unknown"
                     }
-                    
                     echo "TAG is now set to ${env.TAG}"
                 }
             }
@@ -61,9 +56,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'acr-credential-id', passwordVariable: 'ACR_PASSWORD', usernameVariable: 'ACR_USERNAME')]) {
                         // Log in to ACR
                         sh "az acr login --name $CONTAINER_REGISTRY --username $ACR_USERNAME --password $ACR_PASSWORD"
-
-                        // Build and push Docker image to ACR
-                        // 변경: 이미지 이름을 $CONTAINER_REGISTRY/$IMAGE_NAME으로 수정
+                        sh "echo $NEW_IMAGE_TAG"
                         sh "docker build -t $CONTAINER_REGISTRY/$REPO:$NEW_IMAGE_TAG ."
                         sh "docker push $CONTAINER_REGISTRY/$REPO:$NEW_IMAGE_TAG"
                     }
