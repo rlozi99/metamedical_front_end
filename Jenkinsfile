@@ -99,8 +99,6 @@ pipeline {
                         // GitOps 저장소로 변경 사항을 커밋하고 푸시합니다.
                         sh "git config user.email 'rlozi1999@gmail.com'"
                         sh "git config user.name 'rlozi99'"
-                        sh "git add ."
-                        sh "git commit -m 'Update image tag to $NEW_IMAGE_TAG'"
                         // Credential을 사용하여 GitHub에 push
                         withCredentials([usernamePassword(credentialsId: 'jenkins-git-access', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                             // GIT_USERNAME과 GIT_PASSWORD 환경변수를 사용하여 push
