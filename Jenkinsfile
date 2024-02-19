@@ -5,7 +5,7 @@ pipeline {
         AZURE_SUBSCRIPTION_ID = 'c8ce3edc-0522-48a3-b7e4-afe8e3d731d9'
         AZURE_TENANT_ID = '4ccd6048-181f-43a0-ba5a-7f48e8a4fa35'
         RESOURCE_GROUP = 'AKS'
-        NAMESPACE = 'frontend'
+        NAMESPACE = 'front'
 
         CONTAINER_REGISTRY = 'goodbirdacr.azurecr.io'
         REPO = 'medical/front'
@@ -14,7 +14,8 @@ pipeline {
         GIT_CREDENTIALS_ID = 'jenkins-git-access'
 
         NEW_IMAGE_TAG = "${env.BRANCH_NAME}-${env.BUILD_ID}"
-        GIT_REPOSITORY = "rlozi99/MetaMedicine_front_deploy" 
+        GIT_REPOSITORY = "rlozi99/metamedical_front_ops" 
+
         KUBECONFIG = '/home/azureuser/.kube/config'
     }
 
