@@ -63,7 +63,7 @@ pipeline {
                 }
             }
         }
-        stage('Checkout GitOps') {
+        stage('Checkout GitOps..') {
                     steps {
                         // 'front_gitops' 저장소에서 파일들을 체크아웃합니다.
                         git branch: BRANCH_NAME,
